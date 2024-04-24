@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+
+  postgres-db:
+    image: 'postgres:latest'
+    restart: always
+    environment:
+      POSTGRES_USER: development
+      POSTGRES_PASSWORD: development
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: book-network-db
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - '5434:5432'
+    networks:
+      - book-network
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@pgadmin.com
+      PGADMIN_DEFAULT_PASSWORD: admin@password
+    ports:
+      - '15434:80'
+    depends_on:
+      - postgres-db
+    networks:
+      - book-network
+
+  mail-dev:
+    container_name: mail-dev-book
+    image: maildev/maildev
+    ports:
+      - '1080:1080'
+      - '1025:1025'
+
+networks:
+  book-network:
+    driver: bridge
