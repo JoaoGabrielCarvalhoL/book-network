@@ -34,6 +34,7 @@ public class SecurityConfig {
                     authorize.requestMatchers(
                             "/auth/**",
                                     "/register/**",
+                                    "/h2-console/**",
                                     "/v2/api-docs",
                                     "/v3/api-docs",
                                     "/v3/api-docs/**",

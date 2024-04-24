@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
@@ -27,5 +28,5 @@ public interface RegisterController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error.")})
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseEntity<EntityModel<UserCreationResponse>> save(@RequestBody @Valid UserPostRequest userPostRequest);
+    ResponseEntity<EntityModel<UserCreationResponse>> save(@RequestBody @Valid UserPostRequest userPostRequest) throws MessagingException;
 }

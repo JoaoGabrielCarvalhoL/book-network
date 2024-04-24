@@ -4,6 +4,7 @@ import br.com.joaogabriel.booknetwork.controller.user.RegisterController;
 import br.com.joaogabriel.booknetwork.payload.request.user.UserPostRequest;
 import br.com.joaogabriel.booknetwork.payload.response.user.UserCreationResponse;
 import br.com.joaogabriel.booknetwork.service.UserService;
+import jakarta.mail.MessagingException;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class RegisterControllerImpl implements RegisterController {
     }
 
     @Override
-    public ResponseEntity<EntityModel<UserCreationResponse>> save(UserPostRequest userPostRequest) {
+    public ResponseEntity<EntityModel<UserCreationResponse>> save(UserPostRequest userPostRequest) throws MessagingException {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(this.userService.save(userPostRequest));
     }

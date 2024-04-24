@@ -37,7 +37,7 @@ public class User implements UserDetails, Principal, Serializable {
     private String email;
     @Column(nullable = false)
     private String hashPassword;
-    private boolean accountLocked = true;
+    private boolean accountLocked = false;
     private boolean enabled = true;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -205,5 +205,22 @@ public class User implements UserDetails, Principal, Serializable {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", birthOfDate=" + birthOfDate +
+                ", email='" + email + '\'' +
+                ", hashPassword='" + hashPassword + '\'' +
+                ", accountLocked=" + accountLocked +
+                ", enabled=" + enabled +
+                ", roles=" + roles +
+                ", createdDate=" + createdDate +
+                ", lastModifiedDate=" + lastModifiedDate +
+                '}';
     }
 }
