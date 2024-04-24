@@ -40,6 +40,17 @@ public class User implements UserDetails, Principal, Serializable {
     private boolean accountLocked;
     private boolean enabled;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles;
+
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdDate;
+
+    @LastModifiedDate
+    @Column(insertable = false)
+    private LocalDateTime lastModifiedDate;
+
     public User(){ }
 
     public User(String firstname, String lastname,
@@ -59,17 +70,6 @@ public class User implements UserDetails, Principal, Serializable {
         this.id = id;
         this.roles = roles;
     }
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Role> roles;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdDate;
-
-    @LastModifiedDate
-    @Column(insertable = false)
-    private LocalDateTime lastModifiedDate;
 
     @Override
     public String getName() {
