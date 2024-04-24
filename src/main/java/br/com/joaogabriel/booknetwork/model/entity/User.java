@@ -37,8 +37,8 @@ public class User implements UserDetails, Principal, Serializable {
     private String email;
     @Column(nullable = false)
     private String hashPassword;
-    private boolean accountLocked;
-    private boolean enabled;
+    private boolean accountLocked = true;
+    private boolean enabled = true;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
