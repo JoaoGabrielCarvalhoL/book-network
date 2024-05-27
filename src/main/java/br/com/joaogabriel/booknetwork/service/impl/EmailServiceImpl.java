@@ -1,5 +1,6 @@
 package br.com.joaogabriel.booknetwork.service.impl;
 
+import br.com.joaogabriel.booknetwork.model.entity.User;
 import br.com.joaogabriel.booknetwork.service.EmailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -37,6 +38,7 @@ public class EmailServiceImpl implements EmailService {
 
         javaMailSender.send(mimeMessage);
     }
+
 
     private String generateText(String username, String confirmationUrl, String activationCode) {
         return STR."""

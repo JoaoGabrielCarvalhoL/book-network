@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
         return entityModel;
     }
 
-    private void sendValidationEmail(User user) throws MessagingException {
+    public void sendValidationEmail(User user) throws MessagingException {
         final String token = generateAndSaveActivationToken(user);
         emailService
                 .sendEmail(user.getEmail(), user.fullName(), confirmationUrl,
