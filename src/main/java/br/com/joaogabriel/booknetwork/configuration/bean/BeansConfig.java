@@ -1,7 +1,9 @@
 package br.com.joaogabriel.booknetwork.configuration.bean;
 
+import br.com.joaogabriel.booknetwork.configuration.ApplicationAudit;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -9,6 +11,8 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.UUID;
 
 @Configuration
 public class BeansConfig {
@@ -35,5 +39,10 @@ public class BeansConfig {
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    AuditorAware<UUID> auditorAware() {
+        return new ApplicationAudit();
     }
 }
