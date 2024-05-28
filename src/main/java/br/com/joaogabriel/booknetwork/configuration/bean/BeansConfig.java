@@ -41,8 +41,4 @@ public class BeansConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-    @Bean
-    AuditorAware<UUID> auditorAware() {
-        return new ApplicationAudit();
-    }
 }
