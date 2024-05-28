@@ -9,6 +9,7 @@ import jakarta.validation.ConstraintValidatorContext;
 public class EmailAvailableValidator implements ConstraintValidator<EmailAvailable, String> {
 
     private final UserRepository userRepository;
+
     public EmailAvailableValidator(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

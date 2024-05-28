@@ -43,6 +43,12 @@ public class User implements UserDetails, Principal, Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
 
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> history;
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdDate;
@@ -193,6 +199,22 @@ public class User implements UserDetails, Principal, Serializable {
         this.roles = roles;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public List<BookTransactionHistory> getHistory() {
+        return history;
+    }
+
+    public void setHistory(List<BookTransactionHistory> history) {
+        this.history = history;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -209,18 +231,6 @@ public class User implements UserDetails, Principal, Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", birthOfDate=" + birthOfDate +
-                ", email='" + email + '\'' +
-                ", hashPassword='" + hashPassword + '\'' +
-                ", accountLocked=" + accountLocked +
-                ", enabled=" + enabled +
-                ", roles=" + roles +
-                ", createdDate=" + createdDate +
-                ", lastModifiedDate=" + lastModifiedDate +
-                '}';
+        return STR."User{id=\{id}, firstname='\{firstname}\{'\''}, lastname='\{lastname}\{'\''}, birthOfDate=\{birthOfDate}, email='\{email}\{'\''}, hashPassword='\{hashPassword}\{'\''}, accountLocked=\{accountLocked}, enabled=\{enabled}, roles=\{roles}, createdDate=\{createdDate}, lastModifiedDate=\{lastModifiedDate}\{'}'}";
     }
 }
