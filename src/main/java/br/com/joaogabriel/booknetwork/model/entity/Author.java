@@ -22,10 +22,13 @@ public class Author implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String contact;
 
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
@@ -50,4 +53,76 @@ public class Author implements Serializable {
     private UUID lastModifiedByUserId;
 
     public Author() {}
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(LocalDateTime lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    public UUID getCreatedByUserWithId() {
+        return createdByUserWithId;
+    }
+
+    public void setCreatedByUserWithId(UUID createdByUserWithId) {
+        this.createdByUserWithId = createdByUserWithId;
+    }
+
+    public UUID getLastModifiedByUserId() {
+        return lastModifiedByUserId;
+    }
+
+    public void setLastModifiedByUserId(UUID lastModifiedByUserId) {
+        this.lastModifiedByUserId = lastModifiedByUserId;
+    }
 }

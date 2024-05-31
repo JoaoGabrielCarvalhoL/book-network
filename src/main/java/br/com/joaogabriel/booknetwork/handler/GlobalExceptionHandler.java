@@ -1,5 +1,7 @@
 package br.com.joaogabriel.booknetwork.handler;
 
+import br.com.joaogabriel.booknetwork.exception.BookNotAvailableException;
+import br.com.joaogabriel.booknetwork.exception.IllegalBorrowException;
 import br.com.joaogabriel.booknetwork.exception.ResourceAlreadyInUseException;
 import br.com.joaogabriel.booknetwork.exception.ResourceNotFoundException;
 import br.com.joaogabriel.booknetwork.handler.response.ExceptionResponse;
@@ -32,6 +34,20 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(BookNotAvailableException.class)
+    public ResponseEntity<ExceptionResponse> handleBookNotAvailableException(BookNotAvailableException exception) {
+        ExceptionResponse response = new ExceptionResponse("Conflict", exception.getMessage(),
+                HttpStatus.CONFLICT.value(), LocalDateTime.now());
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(IllegalBorrowException.class)
+    public ResponseEntity<ExceptionResponse> handleIllegalBorrowException(IllegalBorrowException exception) {
+        ExceptionResponse response = new ExceptionResponse("Bad Request", exception.getMessage(),
+                HttpStatus.BAD_REQUEST.value(), LocalDateTime.now());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String,String>> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
@@ -40,7 +56,13 @@ public class GlobalExceptionHandler {
             errors.put(field.getField(), field.getDefaultMessage());
         }
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ExceptionResponse> handleException(Exception exception) {
+        ExceptionResponse response = new ExceptionResponse("Internal Server Error", exception.getMessage(),
+                HttpStatus.INTERNAL_SERVER_ERROR.value(), LocalDateTime.now());
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

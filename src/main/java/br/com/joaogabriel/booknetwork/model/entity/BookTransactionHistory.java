@@ -52,4 +52,85 @@ public class BookTransactionHistory implements Serializable {
     @LastModifiedBy
     @Column(updatable = false)
     private UUID lastModifiedByUserId;
+
+    public BookTransactionHistory() {}
+
+    public BookTransactionHistory(Book book, User user, Boolean returned, Boolean returnApproved) {
+        this.book = book;
+        this.user = user;
+        this.returned = returned;
+        this.returnApproved = returnApproved;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Boolean getReturned() {
+        return returned;
+    }
+
+    public void setReturned(Boolean returned) {
+        this.returned = returned;
+    }
+
+    public Boolean getReturnApproved() {
+        return returnApproved;
+    }
+
+    public void setReturnApproved(Boolean returnApproved) {
+        this.returnApproved = returnApproved;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(LocalDateTime lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    public UUID getCreatedByUserWithId() {
+        return createdByUserWithId;
+    }
+
+    public void setCreatedByUserWithId(UUID createdByUserWithId) {
+        this.createdByUserWithId = createdByUserWithId;
+    }
+
+    public UUID getLastModifiedByUserId() {
+        return lastModifiedByUserId;
+    }
+
+    public void setLastModifiedByUserId(UUID lastModifiedByUserId) {
+        this.lastModifiedByUserId = lastModifiedByUserId;
+    }
 }

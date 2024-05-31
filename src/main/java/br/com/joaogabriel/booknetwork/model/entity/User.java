@@ -229,8 +229,4 @@ public class User implements UserDetails, Principal, Serializable {
         return Objects.hashCode(id);
     }
 
-    @Override
-    public String toString() {
-        return STR."User{id=\{id}, firstname='\{firstname}\{'\''}, lastname='\{lastname}\{'\''}, birthOfDate=\{birthOfDate}, email='\{email}\{'\''}, hashPassword='\{hashPassword}\{'\''}, accountLocked=\{accountLocked}, enabled=\{enabled}, roles=\{roles}, createdDate=\{createdDate}, lastModifiedDate=\{lastModifiedDate}\{'}'}";
-    }
 }

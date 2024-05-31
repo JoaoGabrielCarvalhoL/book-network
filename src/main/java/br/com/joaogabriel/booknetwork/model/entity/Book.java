@@ -25,6 +25,8 @@ public class Book implements Serializable {
     @Column(nullable = false, length = 100)
     private String title;
 
+    private String pathCoverPicture;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false)
     private Author author;
@@ -39,7 +41,7 @@ public class Book implements Serializable {
     @OneToMany(mappedBy = "book")
     private List<BookTransactionHistory> histories;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Category category;
 
     @Column(nullable = false, unique = true)
@@ -180,6 +182,14 @@ public class Book implements Serializable {
         this.shareable = shareable;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -210,5 +220,13 @@ public class Book implements Serializable {
 
     public void setLastModifiedByUserId(UUID lastModifiedByUserId) {
         this.lastModifiedByUserId = lastModifiedByUserId;
+    }
+
+    public String getPathCoverPicture() {
+        return pathCoverPicture;
+    }
+
+    public void setPathCoverPicture(String pathCoverPicture) {
+        this.pathCoverPicture = pathCoverPicture;
     }
 }
