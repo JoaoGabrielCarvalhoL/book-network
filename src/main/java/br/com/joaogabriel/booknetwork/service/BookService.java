@@ -2,7 +2,6 @@ package br.com.joaogabriel.booknetwork.service;
 
 import br.com.joaogabriel.booknetwork.payload.request.book.BookPostRequest;
 import br.com.joaogabriel.booknetwork.payload.response.book.BookResponse;
-import jakarta.mail.Multipart;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
